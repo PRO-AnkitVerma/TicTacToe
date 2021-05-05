@@ -1,0 +1,8 @@
+.screen {
+    -fx-background-color: linear-gradient(#f58714, #f54d64 70%);
+}
+
+.play-button {
+        -fx-background-color: #ffffff;
+        -fx-background-radius: 50;
+}
