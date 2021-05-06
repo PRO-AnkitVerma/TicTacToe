@@ -1,14 +1,15 @@
 package tictactoe.gamecomponents;
 
+import javafx.scene.image.Image;
 import tictactoe.utils.Position;
 import tictactoe.utils.Symbol;
 
 import java.util.ArrayList;
 
 public class Board {
-    private static final int TOTAL_ROWS = 3;
-    private static final int TOTAL_COLUMNS = 3;
-    private static final int totalSquares = TOTAL_ROWS * TOTAL_COLUMNS;
+    public static final int TOTAL_ROWS = 3;
+    public static final int TOTAL_COLUMNS = 3;
+    public static final int totalSquares = TOTAL_ROWS * TOTAL_COLUMNS;
     private int numberOfEmptySquares;
     private final ArrayList<ArrayList<Square>> grid;
 
@@ -39,5 +40,16 @@ public class Board {
 
     public ArrayList<ArrayList<Square>> getGrid() {
         return grid;
+    }
+
+    public static void main(String[] args) {
+        Board board = new Board();
+        board.getGrid().get(1).get(1).setSquare(Symbol.CIRCLE);
+        for (int i = 0; i < Board.TOTAL_ROWS; i++) {
+            for (int j = 0; j < Board.TOTAL_COLUMNS; j++) {
+                System.out.print(Symbol.EMPTY == board.getGrid().get(i).get(j).getSymbol());
+            }
+            System.out.println();
+        }
     }
 }

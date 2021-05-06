@@ -31,4 +31,31 @@ public class Player {
     public Symbol getSymbol() {
         return symbol;
     }
+
+    public PlayerType getPlayerType() {
+        return playerType;
+    }
+
+    public static Square getADumbMove(Board board) {
+        ArrayList<ArrayList<Square>> grid = board.getGrid();
+        for (int i = 0; i < Board.TOTAL_ROWS; i++) {
+            for (int j = 0; j < Board.TOTAL_COLUMNS; j++) {
+                Square square = grid.get(i).get(j);
+                if (square.isEmpty()) {
+                    return square;
+                }
+            }
+        }
+        return null;
+    }
+//
+//    public static void main(String[] args) {
+//        Board board = new Board();
+//        board.getGrid().get(1).get(1).setSquare(Symbol.CIRCLE);
+//        board.getGrid().get(2).get(1).setSquare(Symbol.CIRCLE);
+//        board.getGrid().get(0).get(1).setSquare(Symbol.CROSS);
+//
+//        Square square = Player.getADumbMove(board);
+//        System.out.println(square.getSymbol());
+//    }
 }

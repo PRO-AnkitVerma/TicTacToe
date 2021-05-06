@@ -9,6 +9,7 @@ public class Game {
     private static Player player1;
     private static Player player2;
     private static GameMode gameMode;
+    private static Player currentPlayer;
 
     public static void setGame(GameMode gM) {
         gameMode = gM;
@@ -17,6 +18,12 @@ public class Game {
         player2 = (gameMode == GameMode.SOLO) ? new Player(PlayerType.BOT) : new Player();
         player1.setSymbol(Symbol.CROSS);
         player2.setSymbol(Symbol.CIRCLE);
+        currentPlayer = player1;
+    }
+
+    public static Player switchCurrentPlayer() {
+        currentPlayer = (currentPlayer == player1) ? player2 : player1;
+        return currentPlayer;
     }
 
     public static GameMode getGameMode() {
@@ -31,6 +38,7 @@ public class Game {
         player1.setSymbol(symbol);
         if (symbol == Symbol.CIRCLE) {
             player2.setSymbol(Symbol.CROSS);
+            currentPlayer = player2;
         } else {
             player2.setSymbol(Symbol.CIRCLE);
         }
@@ -42,5 +50,13 @@ public class Game {
 
     public static Player getPlayer2() {
         return player2;
+    }
+
+    public static Board getBoard() {
+        return board;
+    }
+
+    public static Player getCurrentPlayer() {
+        return currentPlayer;
     }
 }
