@@ -1,19 +1,26 @@
 package tictactoe.gamecomponents;
 
 import javafx.scene.image.Image;
+import tictactoe.Main;
 import tictactoe.utils.Symbol;
 
 public class Square {
-    private Symbol symbol = Symbol.EMPTY;
+    private Symbol symbol;
     private Image image;
+
+    public Square() {
+        symbol = Symbol.EMPTY;
+    }
 
     public void setSquare(Symbol symbol) {
         this.symbol = symbol;
         //TODO: add image location for O and X
         if (symbol == Symbol.CIRCLE) {
-            this.image = new Image("");
+            this.image = Main.CIRCLE;
+
         } else if (symbol == Symbol.CROSS) {
-            this.image = new Image("");
+            this.image = Main.CROSS;
+
         }
     }
 

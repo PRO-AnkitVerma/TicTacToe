@@ -10,6 +10,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static final Image CIRCLE = new Image("tictactoe/images/imageO.png");
+    public static final Image CROSS = new Image("tictactoe/images/imageX.png");
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("screens/home.fxml"));
