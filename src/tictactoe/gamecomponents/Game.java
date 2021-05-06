@@ -4,15 +4,19 @@ import tictactoe.utils.GameMode;
 import tictactoe.utils.PlayerType;
 
 public class Game {
-    private final Board board;
-    private final Player player1;
-    private final Player player2;
-    private final GameMode gameMode;
+    private static Board board;
+    private static Player player1;
+    private static Player player2;
+    private static GameMode gameMode;
 
-    public Game(GameMode gameMode) {
-        this.gameMode = gameMode;
-        this.board = new Board();
-        this.player1 = new Player();
-        this.player2 = (gameMode == GameMode.SOLO) ? new Player(PlayerType.BOT) : new Player();
+    public static void setGame(GameMode gM) {
+        gameMode = gM;
+        board = new Board();
+        player1 = new Player();
+        player2 = (gameMode == GameMode.SOLO) ? new Player(PlayerType.BOT) : new Player();
+    }
+
+    public static GameMode getGameMode() {
+        return gameMode;
     }
 }

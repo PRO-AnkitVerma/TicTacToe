@@ -25,7 +25,7 @@
             <Image url="@../images/imageX.png" />
          </image>
       </ImageView>
-      <Button layoutX="75.0" layoutY="409.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="300.0" styleClass="button-gradient" stylesheets="@../stylesheets/main.css" text="PLAY  AGAIN" textFill="WHITE">
+      <Button fx:id="playAgainButton" layoutX="75.0" layoutY="409.0" mnemonicParsing="false" onAction="#switchToGamePlay" prefHeight="42.0" prefWidth="300.0" styleClass="button-gradient" stylesheets="@../stylesheets/main.css" text="PLAY  AGAIN" textFill="WHITE">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
@@ -33,7 +33,7 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </Button>
-      <Button layoutX="75.0" layoutY="486.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="300.0" styleClass="button-gradient" stylesheets="@../stylesheets/main.css" text="HOME" textFill="WHITE">
+      <Button fx:id="backToHomeButton" layoutX="75.0" layoutY="486.0" mnemonicParsing="false" onAction="#switchToHome" prefHeight="42.0" prefWidth="300.0" styleClass="button-gradient" stylesheets="@../stylesheets/main.css" text="HOME" textFill="WHITE">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
