@@ -19,4 +19,8 @@ public class Game {
     public static GameMode getGameMode() {
         return gameMode;
     }
+
+    public void playGame() {
+
+    }
 }

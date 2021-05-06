@@ -2,12 +2,16 @@
   <library name="lib">
     <CLASSES>
       <root url="file://D:/JavaFX SDK version 16 and Scene Builder/javafx-sdk-16/lib" />
+      <root url="file://D:/JavaFX/javafx-sdk-16/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="file://D:/JavaFX SDK version 16 and Scene Builder/javafx-sdk-16/lib" />
+      <root url="file://D:/JavaFX/javafx-sdk-16/lib" />
     </SOURCES>
     <jarDirectory url="file://D:/JavaFX SDK version 16 and Scene Builder/javafx-sdk-16/lib" recursive="false" />
+    <jarDirectory url="file://D:/JavaFX/javafx-sdk-16/lib" recursive="false" />
     <jarDirectory url="file://D:/JavaFX SDK version 16 and Scene Builder/javafx-sdk-16/lib" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://D:/JavaFX/javafx-sdk-16/lib" recursive="false" type="SOURCES" />
   </library>
 </component>
