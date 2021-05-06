@@ -24,4 +24,11 @@ public class Player {
         return new Position(0, 0);
     }
 
+    public void setSymbol(Symbol symbol) {
+        this.symbol = symbol;
+    }
+
+    public Symbol getSymbol() {
+        return symbol;
+    }
 }
