@@ -1,6 +1,5 @@
 package tictactoe.gamecomponents;
 
-import javafx.scene.image.Image;
 import tictactoe.utils.Position;
 import tictactoe.utils.Symbol;
 
@@ -18,7 +17,7 @@ public class Board {
         for (int i = 0; i < TOTAL_ROWS; i++) {
             ArrayList<Square> row = new ArrayList<Square>();
             for (int j = 0; j < TOTAL_COLUMNS; j++) {
-                row.add(new Square());
+                row.add(new Square(i, j));
             }
             grid.add(row);
         }
@@ -40,16 +39,5 @@ public class Board {
 
     public ArrayList<ArrayList<Square>> getGrid() {
         return grid;
-    }
-
-    public static void main(String[] args) {
-        Board board = new Board();
-        board.getGrid().get(1).get(1).setSquare(Symbol.CIRCLE);
-        for (int i = 0; i < Board.TOTAL_ROWS; i++) {
-            for (int j = 0; j < Board.TOTAL_COLUMNS; j++) {
-                System.out.print(Symbol.EMPTY == board.getGrid().get(i).get(j).getSymbol());
-            }
-            System.out.println();
-        }
     }
 }

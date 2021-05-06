@@ -1,6 +1,7 @@
 package tictactoe.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import tictactoe.gamecomponents.Game;
 import tictactoe.gamecomponents.Player;
@@ -23,6 +25,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GamePlayController implements Initializable {
+
+    @FXML
+    public GridPane grid;
     private Player currentPlayer;
 
     public ImageView square02;
@@ -40,6 +45,7 @@ public class GamePlayController implements Initializable {
     private Scene scene;
 
     private ImageView imageViewClicked;
+    private String squareId;
 
     public void switchToHome(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../screens/home.fxml"));
@@ -52,8 +58,8 @@ public class GamePlayController implements Initializable {
     public void markSquare(MouseEvent event) {
         //TODO: To be continued!!!!
 
-        ImageView imageViewClicked = (ImageView) event.getSource();
-        String squareId = imageViewClicked.getId();
+        imageViewClicked = (ImageView) event.getSource();
+        squareId = imageViewClicked.getId();
         String coords = squareId.substring(squareId.length() - 2);
         int x = Integer.parseInt(String.valueOf(coords.charAt(0)));
         int y = Integer.parseInt(String.valueOf(coords.charAt(1)));
@@ -74,26 +80,31 @@ public class GamePlayController implements Initializable {
         currentPlayer = Game.switchCurrentPlayer();
 
         if (Game.getPlayer2().getPlayerType() == PlayerType.BOT) {
+
             System.out.println(currentPlayer.getPlayerType());
             //TODO: bot makes a move - backtracking
             square = Player.getADumbMove(Game.getBoard());
             if (square == null) return;
             square.setSquare(currentPlayer.getSymbol());
-            imageViewClicked.setImage(square.getImage());
-            currentPlayer = Game.getCurrentPlayer();
+            squareId = "square" + square.getX() + square.getY();
+            ImageView imageView = (ImageView) grid.lookup("#" + squareId);
+            imageView.setImage(square.getImage());
+            currentPlayer = Game.switchCurrentPlayer();
         }
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currentPlayer = Game.getCurrentPlayer();
         if (currentPlayer.getPlayerType() == PlayerType.BOT) {
+
             //TODO: bot makes a move - backtracking
             Square square = Player.getADumbMove(Game.getBoard());
             if (square == null) return;
             square.setSquare(currentPlayer.getSymbol());
-            imageViewClicked.setImage(square.getImage());
+            squareId = "square" + square.getX() + square.getY();
+            ImageView imageView = (ImageView) grid.lookup("#" + squareId);
+            imageView.setImage(square.getImage());
             currentPlayer = Game.switchCurrentPlayer();
         }
     }
