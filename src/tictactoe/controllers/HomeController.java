@@ -10,7 +10,6 @@ import tictactoe.gamecomponents.Game;
 import tictactoe.utils.GameMode;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class HomeController {
 

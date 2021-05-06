@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 import tictactoe.gamecomponents.Game;
+import tictactoe.utils.Symbol;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,13 @@ public class PickSideController {
     private RadioButton firstRadioButton, secondRadioButton;
 
     public void switchToGamePlay(ActionEvent event) throws IOException {
+        if (firstRadioButton.isSelected()) {
+            Game.setPlayerSymbol(Symbol.CROSS);
+
+        } else if (secondRadioButton.isSelected()) {
+            Game.setPlayerSymbol(Symbol.CIRCLE);
+        }
+
         if (firstRadioButton.isSelected() || secondRadioButton.isSelected()) {
             root = FXMLLoader.load(getClass().getResource("../screens/gamePlay.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
