@@ -1,5 +1,6 @@
 package tictactoe.gamecomponents;
 
+import tictactoe.utils.Position;
 import tictactoe.utils.Symbol;
 
 import java.util.ArrayList;
@@ -27,8 +28,8 @@ public class Board {
         return numberOfEmptySquares == 0;
     }
 
-    public void markSquare(int i, int j, Symbol symbol) {
-        Square square = grid.get(i).get(j);
+    public void markSquare(Position position, Symbol symbol) {
+        Square square = grid.get(position.getX()).get(position.getY());
         if (square.isEmpty()) {
             //TODO: mark the square filled!
             square.setSquare(symbol);
