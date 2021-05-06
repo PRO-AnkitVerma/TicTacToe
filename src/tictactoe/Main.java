@@ -7,11 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("screens/home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("screens/result.fxml"));
         primaryStage.setTitle("TicTacToe");
         Scene scene = new Scene(root);
 

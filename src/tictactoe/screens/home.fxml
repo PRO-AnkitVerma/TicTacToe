@@ -31,7 +31,7 @@
                         <Image url="@../images/logo.png" />
                     </image>
                 </ImageView>
-                <Button alignment="CENTER" layoutX="64.0" layoutY="454.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="322.0" styleClass="play-button" stylesheets="@../stylesheets/home.css" text="PLAY  WITH  COMPUTER">
+                <Button fx:id="playWithComputerButton" alignment="CENTER" layoutX="64.0" layoutY="454.0" mnemonicParsing="false" onAction="#switchToPickSide" prefHeight="42.0" prefWidth="322.0" styleClass="play-button" stylesheets="@../stylesheets/home.css" text="PLAY  WITH  COMPUTER">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
@@ -39,7 +39,7 @@
                         <Insets bottom="10.0" top="10.0" />
                     </padding>
                 </Button>
-                <Button alignment="CENTER" layoutX="64.0" layoutY="524.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="322.0" styleClass="play-button" stylesheets="@../stylesheets/home.css" text="TWO  PLAYERS">
+                <Button fx:id="playMultiplayerButton" alignment="CENTER" layoutX="64.0" layoutY="524.0" mnemonicParsing="false" onAction="#switchToGamePlay" prefHeight="42.0" prefWidth="322.0" styleClass="play-button" stylesheets="@../stylesheets/home.css" text="PLAY  MULTIPLAYER">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>

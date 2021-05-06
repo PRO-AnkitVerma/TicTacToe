@@ -22,7 +22,7 @@
             <Image url="@../images/imageX.png" />
          </image>
       </ImageView>
-      <RadioButton layoutX="113.0" layoutY="332.0" mnemonicParsing="false">
+      <RadioButton fx:id="firstRadioButton" layoutX="113.0" layoutY="332.0" mnemonicParsing="false">
          <font>
             <Font size="14.0" />
          </font>
@@ -30,12 +30,12 @@
             <ToggleGroup fx:id="pickSideRadioButton" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="304.0" layoutY="332.0" mnemonicParsing="false" textFill="#b95858" toggleGroup="$pickSideRadioButton">
+      <RadioButton fx:id="secondRadioButton" layoutX="304.0" layoutY="332.0" mnemonicParsing="false" textFill="#b95858" toggleGroup="$pickSideRadioButton">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <Button alignment="CENTER" layoutX="85.0" layoutY="495.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="280.0" styleClass="button-gradient" stylesheets="@../stylesheets/main.css" text="CONTINUE" textFill="#f2eaea">
+      <Button fx:id="continueToPlayButton" alignment="CENTER" layoutX="85.0" layoutY="495.0" mnemonicParsing="false" onAction="#switchToGamePlay" prefHeight="27.0" prefWidth="280.0" styleClass="button-gradient" stylesheets="@../stylesheets/main.css" text="CONTINUE" textFill="#f2eaea">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
