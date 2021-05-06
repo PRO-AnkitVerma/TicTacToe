@@ -2,14 +2,19 @@ package tictactoe.gamecomponents;
 
 import javafx.scene.image.Image;
 import tictactoe.Main;
+import tictactoe.utils.Position;
 import tictactoe.utils.Symbol;
 
 public class Square {
     private Symbol symbol;
     private Image image;
+    private final int x;
+    private final int y;
 
-    public Square() {
+    public Square(int x, int y) {
         symbol = Symbol.EMPTY;
+        this.x = x;
+        this.y = y;
     }
 
     public void setSquare(Symbol symbol) {
@@ -39,5 +44,17 @@ public class Square {
 
     public boolean isEmpty() {
         return symbol == Symbol.EMPTY;
+    }
+
+    public Position getPosition() {
+        return new Position(x, y);
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
     }
 }
