@@ -18,5 +18,5 @@ public enum Symbol {
         public String toString() {
             return " ";
         }
-    }
+    },
 }
