@@ -18,7 +18,7 @@ public class Player {
         this.playerType = playerType;
     }
 
-    public Position getMove(Board board) {
+    public Position getBestMove(Board board) {
         ArrayList<ArrayList<Square>> grid = board.getGrid();
         //TODO: implement backtracking algorithm for calculating optimum move
         return new Position(0, 0);

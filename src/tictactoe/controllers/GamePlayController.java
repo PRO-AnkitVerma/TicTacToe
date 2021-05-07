@@ -47,9 +47,6 @@ public class GamePlayController implements Initializable {
     private ImageView imageViewClicked;
     private String squareId;
 
-    Alert a = new Alert(Alert.AlertType.NONE);
-
-
     public void switchToHome(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../screens/home.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -58,9 +55,8 @@ public class GamePlayController implements Initializable {
         stage.show();
     }
 
-    public void markSquare(MouseEvent event) throws IOException {
+    public void markSquare(MouseEvent event) throws IOException, InterruptedException {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        //TODO: To be continued!!!!
 
         imageViewClicked = (ImageView) event.getSource();
         squareId = imageViewClicked.getId();
@@ -77,11 +73,9 @@ public class GamePlayController implements Initializable {
         Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
         imageViewClicked.setImage(square.getImage());
 
+        //System.out.println("Clicked: " + x + " " + y + " :" + Game.getCurrentPlayer().getSymbol());
+        //System.out.println(Game.getCurrentPlayer().getPlayerType());
 
-        System.out.println("Clicked: " + x + " " + y + " :" + Game.getCurrentPlayer().getSymbol());
-        System.out.println(Game.getCurrentPlayer().getPlayerType());
-
-        //TODO: evaluate who won?
         Position position = new Position(square.getX(), square.getY());
         GameStatus gameStatus = Game.isGameFinished(position);
         if (gameStatus != GameStatus.PLAYING) navigateResults(stage);
@@ -89,6 +83,7 @@ public class GamePlayController implements Initializable {
         currentPlayer = Game.switchCurrentPlayer();
 
         if (Game.getPlayer2().getPlayerType() == PlayerType.BOT) {
+            //TODO: add a smooth delay for bot move
 
             System.out.println(currentPlayer.getPlayerType());
             //TODO: bot makes a move - backtracking
@@ -135,12 +130,10 @@ public class GamePlayController implements Initializable {
     }
 
     public void navigateResults(Stage stage) throws IOException {
-        //TODO: Navigate to next page
         root = FXMLLoader.load(getClass().getResource("../screens/result.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println("Navigating!");
+        //System.out.println("Navigating!");
     }
-
 }

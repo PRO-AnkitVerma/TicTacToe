@@ -31,7 +31,6 @@ public class Board {
     public void markSquare(Position position, Symbol symbol) {
         Square square = grid.get(position.getX()).get(position.getY());
         if (square.isEmpty()) {
-            //TODO: mark the square filled!
             square.setSquare(symbol);
             --numberOfEmptySquares;
             System.out.println(numberOfEmptySquares + " left!!!");
