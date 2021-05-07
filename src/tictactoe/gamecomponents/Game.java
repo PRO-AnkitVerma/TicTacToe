@@ -10,6 +10,7 @@ public class Game {
     private static Player player2;
     private static GameMode gameMode;
     private static Player currentPlayer;
+    private static GameStatus gameStatus;
 
     public static void setGame(GameMode gM) {
         gameMode = gM;
@@ -58,13 +59,17 @@ public class Game {
         }
         if (row == n + 1 || col == n + 1 || diag == n + 1 || revDiag == n + 1) {
             if (currentPlayer.getSymbol() == Symbol.CROSS) {
+                gameStatus = GameStatus.PLAYER1_WINS;
                 return GameStatus.PLAYER1_WINS;
             } else {
+                gameStatus = GameStatus.PLAYER2_WINS;
                 return GameStatus.PLAYER2_WINS;
             }
         } else if (false/*TODO: condition to check if no square remaining*/) {
+            gameStatus = GameStatus.DRAW;
             return GameStatus.DRAW;
         }
+        gameStatus = GameStatus.PLAYING;
         return GameStatus.PLAYING;
     }
 
@@ -82,5 +87,9 @@ public class Game {
 
     public static Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public static GameStatus getGameStatus() {
+        return gameStatus;
     }
 }
