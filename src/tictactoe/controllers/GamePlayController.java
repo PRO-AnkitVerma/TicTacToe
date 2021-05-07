@@ -71,15 +71,8 @@ public class GamePlayController implements Initializable {
 
         currentPlayer = Game.switchCurrentPlayer();
 
-        Game.getBoard().print();
-
-
         if (Game.getPlayer2().getPlayerType() == PlayerType.BOT) {
-            //TODO: add a smooth delay for bot move
-
-            System.out.println(currentPlayer.getPlayerType());
-
-
+            
             int[] pos = MiniMax.getBestMove(Game.getBoard(), Game.getCurrentPlayer());
             square = Game.getBoard().getGrid().get(pos[0]).get(pos[1]);
 
@@ -98,9 +91,6 @@ public class GamePlayController implements Initializable {
             }
 
             currentPlayer = Game.switchCurrentPlayer();
-
-            Game.getBoard().print();
-
         }
     }
 
@@ -131,8 +121,6 @@ public class GamePlayController implements Initializable {
             imageView.setImage(square.getImage());
 
             currentPlayer = Game.switchCurrentPlayer();
-
-            Game.getBoard().print();
         }
     }
 

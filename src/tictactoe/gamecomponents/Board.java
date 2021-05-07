@@ -33,7 +33,6 @@ public class Board {
         if (square.isEmpty()) {
             square.setSquare(symbol);
             --numberOfEmptySquares;
-            System.out.println(numberOfEmptySquares + " left!!!");
         }
     }
 
