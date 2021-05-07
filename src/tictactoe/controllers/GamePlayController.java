@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -46,6 +47,9 @@ public class GamePlayController implements Initializable {
     private ImageView imageViewClicked;
     private String squareId;
 
+    Alert a = new Alert(Alert.AlertType.NONE);
+
+
     public void switchToHome(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../screens/home.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -79,7 +83,7 @@ public class GamePlayController implements Initializable {
         //TODO: evaluate who won?
         Position position = new Position(square.getX(), square.getY());
         GameStatus gameStatus = Game.isGameFinished(position);
-        if (gameStatus != GameStatus.PLAYING) navigateResults(gameStatus);
+        if (gameStatus != GameStatus.PLAYING) navigateResults(gameStatus, stage);
 
         currentPlayer = Game.switchCurrentPlayer();
 
@@ -96,7 +100,7 @@ public class GamePlayController implements Initializable {
 
             position = new Position(square.getX(), square.getY());
             gameStatus = Game.isGameFinished(position);
-            if (gameStatus != GameStatus.PLAYING) navigateResults(gameStatus);
+            if (gameStatus != GameStatus.PLAYING) navigateResults(gameStatus, stage);
 
             currentPlayer = Game.switchCurrentPlayer();
         }
@@ -121,9 +125,33 @@ public class GamePlayController implements Initializable {
         }
     }
 
-    public void navigateResults(GameStatus gameStatus) {
+    public void switchToResult(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("../screens/result.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void navigateResults(GameStatus gameStatus, Stage stage) {
         //TODO: Navigate to next page
+//        root = FXMLLoader.load(getClass().getResource("../screens/result.fxml"));
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        if (Game.getGameStatus() == GameStatus.PLAYER1_WINS)
+            a.setHeaderText("Congrats! Player1 wins!");
+        else if (Game.getGameStatus() == GameStatus.PLAYER2_WINS)
+            a.setHeaderText("Congrats! Player2 wins!");
+        else if (Game.getGameStatus() == GameStatus.DRAW)
+            a.setHeaderText("Game Draw");
+
+        a.show();
+
         //TODO: show result
         System.out.println("Navigating!");
     }
+
 }
