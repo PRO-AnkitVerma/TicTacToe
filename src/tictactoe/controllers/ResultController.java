@@ -6,6 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tictactoe.gamecomponents.Game;
+import tictactoe.utils.GameStatus;
 
 import java.io.IOException;
 
@@ -29,6 +31,9 @@ public class ResultController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        //TODO: How to use?? Game.getGameStatus() or currentPlayer
+
     }
 
 }
