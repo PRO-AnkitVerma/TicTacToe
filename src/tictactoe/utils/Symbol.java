@@ -2,6 +2,7 @@ package tictactoe.utils;
 
 
 public enum Symbol {
+
     CIRCLE {
         public String toString() {
             return "O";
@@ -16,7 +17,22 @@ public enum Symbol {
 
     EMPTY {
         public String toString() {
-            return " ";
+            return "?";
         }
-    },
+    };
+
+    public static int getValue(Symbol symbol) {
+        switch (symbol) {
+            case EMPTY -> {
+                return 0;
+            }
+            case CIRCLE -> {
+                return -10;
+            }
+            case CROSS -> {
+                return +10;
+            }
+        }
+        return 0;
+    }
 }

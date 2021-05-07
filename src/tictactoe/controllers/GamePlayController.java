@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,6 +16,7 @@ import tictactoe.gamecomponents.Game;
 import tictactoe.gamecomponents.Player;
 import tictactoe.gamecomponents.Square;
 import tictactoe.utils.GameStatus;
+import tictactoe.utils.MiniMax;
 import tictactoe.utils.PlayerType;
 import tictactoe.utils.Position;
 
@@ -78,27 +78,47 @@ public class GamePlayController implements Initializable {
 
         Position position = new Position(square.getX(), square.getY());
         GameStatus gameStatus = Game.isGameFinished(position);
-        if (gameStatus != GameStatus.PLAYING) navigateResults(stage);
+        if (gameStatus != GameStatus.PLAYING) {
+            navigateResults(stage);
+            return;
+        }
 
         currentPlayer = Game.switchCurrentPlayer();
+
+        Game.getBoard().print();
+
 
         if (Game.getPlayer2().getPlayerType() == PlayerType.BOT) {
             //TODO: add a smooth delay for bot move
 
             System.out.println(currentPlayer.getPlayerType());
             //TODO: bot makes a move - backtracking
-            square = Player.getADumbMove(Game.getBoard());
+
+
+            int[] pos = MiniMax.getBestMove(Game.getBoard(), Game.getCurrentPlayer());
+            square = Game.getBoard().getGrid().get(pos[0]).get(pos[1]);
+
+
+//            square = Player.getADumbMove(Game.getBoard());
             if (square == null) return;
-            square.setSquare(currentPlayer.getSymbol());
+//            square.setSquare(currentPlayer.getSymbol());
+            Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
+
             squareId = "square" + square.getX() + square.getY();
             ImageView imageView = (ImageView) grid.lookup("#" + squareId);
             imageView.setImage(square.getImage());
 
             position = new Position(square.getX(), square.getY());
             gameStatus = Game.isGameFinished(position);
-            if (gameStatus != GameStatus.PLAYING) navigateResults(stage);
+            if (gameStatus != GameStatus.PLAYING) {
+                navigateResults(stage);
+                return;
+            }
 
             currentPlayer = Game.switchCurrentPlayer();
+
+            Game.getBoard().print();
+
         }
     }
 
@@ -108,7 +128,10 @@ public class GamePlayController implements Initializable {
         if (currentPlayer.getPlayerType() == PlayerType.BOT) {
 
             //TODO: bot makes a move - backtracking
-            Square square = Player.getADumbMove(Game.getBoard());
+            int[] pos = MiniMax.getBestMove(Game.getBoard(), Game.getCurrentPlayer());
+            Square square = Game.getBoard().getGrid().get(pos[0]).get(pos[1]);
+
+//            Square square = Player.getADumbMove(Game.getBoard());
             if (square == null) return;
 
             Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
@@ -118,22 +141,16 @@ public class GamePlayController implements Initializable {
             imageView.setImage(square.getImage());
 
             currentPlayer = Game.switchCurrentPlayer();
+
+            Game.getBoard().print();
         }
     }
 
-    public void switchToResult(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../screens/result.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public void navigateResults(Stage stage) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../screens/result.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        //System.out.println("Navigating!");
     }
 }
