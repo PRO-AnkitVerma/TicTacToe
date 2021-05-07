@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -19,7 +18,6 @@ import tictactoe.gamecomponents.Square;
 import tictactoe.utils.GameStatus;
 import tictactoe.utils.PlayerType;
 import tictactoe.utils.Position;
-import tictactoe.utils.Symbol;
 
 import java.io.IOException;
 import java.net.URL;
@@ -81,7 +79,7 @@ public class GamePlayController implements Initializable {
         //TODO: evaluate who won?
         Position position = new Position(square.getX(), square.getY());
         GameStatus gameStatus = Game.isGameFinished(position);
-        navigateResultsIfGameFinished(gameStatus);
+        if (gameStatus != GameStatus.PLAYING) navigateResults(gameStatus);
 
         currentPlayer = Game.switchCurrentPlayer();
 
@@ -99,7 +97,7 @@ public class GamePlayController implements Initializable {
             //TODO: evaluate who won?
             position = new Position(square.getX(), square.getY());
             gameStatus = Game.isGameFinished(position);
-            navigateResultsIfGameFinished(gameStatus);
+            if (gameStatus != GameStatus.PLAYING) navigateResults(gameStatus);
 
             currentPlayer = Game.switchCurrentPlayer();
         }
@@ -121,19 +119,9 @@ public class GamePlayController implements Initializable {
         }
     }
 
-    public void navigateResultsIfGameFinished(GameStatus gameStatus) {
-        if (gameStatus == GameStatus.PLAYER1_WINS) {
-            //TODO: Navigate to next page
-            //TODO: show result
-            System.out.println(GameStatus.PLAYER1_WINS);
-        } else if (gameStatus == GameStatus.PLAYER2_WINS) {
-            //TODO: Navigate to next page
-            //TODO: show result
-            System.out.println(GameStatus.PLAYER2_WINS);
-        } else if (gameStatus == GameStatus.DRAW) {
-            //TODO: Navigate to next page
-            //TODO: show result
-            System.out.println(GameStatus.DRAW);
-        }
+    public void navigateResults(GameStatus gameStatus) {
+        //TODO: Navigate to next page
+        //TODO: show result
+        System.out.println("Navigating!");
     }
 }
