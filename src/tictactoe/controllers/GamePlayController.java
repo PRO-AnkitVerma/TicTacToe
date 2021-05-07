@@ -58,7 +58,8 @@ public class GamePlayController implements Initializable {
         stage.show();
     }
 
-    public void markSquare(MouseEvent event) {
+    public void markSquare(MouseEvent event) throws IOException {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         //TODO: To be continued!!!!
 
         imageViewClicked = (ImageView) event.getSource();
@@ -83,7 +84,7 @@ public class GamePlayController implements Initializable {
         //TODO: evaluate who won?
         Position position = new Position(square.getX(), square.getY());
         GameStatus gameStatus = Game.isGameFinished(position);
-        if (gameStatus != GameStatus.PLAYING) navigateResults(gameStatus, stage);
+        if (gameStatus != GameStatus.PLAYING) navigateResults(stage);
 
         currentPlayer = Game.switchCurrentPlayer();
 
@@ -100,7 +101,7 @@ public class GamePlayController implements Initializable {
 
             position = new Position(square.getX(), square.getY());
             gameStatus = Game.isGameFinished(position);
-            if (gameStatus != GameStatus.PLAYING) navigateResults(gameStatus, stage);
+            if (gameStatus != GameStatus.PLAYING) navigateResults(stage);
 
             currentPlayer = Game.switchCurrentPlayer();
         }
@@ -133,24 +134,12 @@ public class GamePlayController implements Initializable {
         stage.show();
     }
 
-    public void navigateResults(GameStatus gameStatus, Stage stage) {
+    public void navigateResults(Stage stage) throws IOException {
         //TODO: Navigate to next page
-//        root = FXMLLoader.load(getClass().getResource("../screens/result.fxml"));
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-
-        a.setAlertType(Alert.AlertType.CONFIRMATION);
-        if (Game.getGameStatus() == GameStatus.PLAYER1_WINS)
-            a.setHeaderText("Congrats! Player1 wins!");
-        else if (Game.getGameStatus() == GameStatus.PLAYER2_WINS)
-            a.setHeaderText("Congrats! Player2 wins!");
-        else if (Game.getGameStatus() == GameStatus.DRAW)
-            a.setHeaderText("Game Draw");
-
-        a.show();
-
-        //TODO: show result
+        root = FXMLLoader.load(getClass().getResource("../screens/result.fxml"));
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Navigating!");
     }
 
