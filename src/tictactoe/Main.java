@@ -13,6 +13,9 @@ public class Main extends Application {
     public static final Image CIRCLE = new Image("tictactoe/images/imageO.png");
     public static final Image CROSS = new Image("tictactoe/images/imageX.png");
 
+    public static final Image SMALLCIRCLE = new Image("tictactoe/images/imageO-small.png");
+    public static final Image SMALLCROSS = new Image("tictactoe/images/imageX-small.png");
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
