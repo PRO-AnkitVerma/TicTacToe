@@ -36,7 +36,7 @@ public class Player {
         return playerType;
     }
 
-    public static Square getADumbMove(Board board) {
+    public static Square getADumbMove(Board board) throws NullPointerException {
         ArrayList<ArrayList<Square>> grid = board.getGrid();
         for (int i = 0; i < Board.TOTAL_ROWS; i++) {
             for (int j = 0; j < Board.TOTAL_COLUMNS; j++) {
@@ -48,14 +48,4 @@ public class Player {
         }
         return null;
     }
-//
-//    public static void main(String[] args) {
-//        Board board = new Board();
-//        board.getGrid().get(1).get(1).setSquare(Symbol.CIRCLE);
-//        board.getGrid().get(2).get(1).setSquare(Symbol.CIRCLE);
-//        board.getGrid().get(0).get(1).setSquare(Symbol.CROSS);
-//
-//        Square square = Player.getADumbMove(board);
-//        System.out.println(square.getSymbol());
-//    }
 }

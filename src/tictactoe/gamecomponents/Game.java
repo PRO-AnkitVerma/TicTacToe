@@ -1,8 +1,8 @@
 package tictactoe.gamecomponents;
 
-import tictactoe.utils.GameMode;
-import tictactoe.utils.PlayerType;
-import tictactoe.utils.Symbol;
+import tictactoe.utils.*;
+
+import java.util.ArrayList;
 
 public class Game {
     private static Board board;
@@ -30,10 +30,6 @@ public class Game {
         return gameMode;
     }
 
-    public static void playGame() {
-        //TODO: Implement playGame
-    }
-
     public static void setPlayerSymbol(Symbol symbol) {
         player1.setSymbol(symbol);
         if (symbol == Symbol.CIRCLE) {
@@ -42,6 +38,34 @@ public class Game {
         } else {
             player2.setSymbol(Symbol.CIRCLE);
         }
+    }
+
+    public static GameStatus isGameFinished(Position position) {
+        ArrayList<ArrayList<Square>> grid = board.getGrid();
+        int row = 0, col = 0, diag = 0, revDiag = 0;
+        int n = Board.TOTAL_ROWS - 1;
+        for (int i = 0; i < Board.TOTAL_ROWS; i++) {
+            int x = position.getX();
+            int y = position.getY();
+            if (grid.get(x).get(i).getSymbol() == currentPlayer.getSymbol())
+                col++;
+            if (grid.get(i).get(y).getSymbol() == currentPlayer.getSymbol())
+                row++;
+            if (grid.get(i).get(i).getSymbol() == currentPlayer.getSymbol())
+                diag++;
+            if (grid.get(i).get(n - i).getSymbol() == currentPlayer.getSymbol())
+                revDiag++;
+        }
+        if (row == n + 1 || col == n + 1 || diag == n + 1 || revDiag == n + 1) {
+            if (currentPlayer.getSymbol() == Symbol.CROSS) {
+                return GameStatus.PLAYER1_WINS;
+            } else {
+                return GameStatus.PLAYER2_WINS;
+            }
+        } else if (false/*TODO: condition to check if no square remaining*/) {
+            return GameStatus.DRAW;
+        }
+        return GameStatus.PLAYING;
     }
 
     public static Player getPlayer1() {

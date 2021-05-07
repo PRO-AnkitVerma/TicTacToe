@@ -37,6 +37,7 @@ public class Board {
         }
     }
 
+
     public ArrayList<ArrayList<Square>> getGrid() {
         return grid;
     }
