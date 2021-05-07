@@ -101,7 +101,6 @@ public class GamePlayController implements Initializable {
             gameStatus = Game.isGameFinished(position);
             navigateResultsIfGameFinished(gameStatus);
 
-
             currentPlayer = Game.switchCurrentPlayer();
         }
     }
