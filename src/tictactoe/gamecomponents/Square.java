@@ -21,10 +21,10 @@ public class Square {
         this.symbol = symbol;
         //TODO: add image location for O and X
         if (symbol == Symbol.CIRCLE) {
-            this.image = Main.CIRCLE;
+            this.image = Main.SMALLCIRCLE;
 
         } else if (symbol == Symbol.CROSS) {
-            this.image = Main.CROSS;
+            this.image = Main.SMALLCROSS;
 
         }
     }
