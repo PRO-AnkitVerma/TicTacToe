@@ -19,7 +19,6 @@ public class Square {
 
     public void setSquare(Symbol symbol) {
         this.symbol = symbol;
-        //TODO: add image location for O and X
         if (symbol == Symbol.CIRCLE) {
             this.image = Main.SMALLCIRCLE;
 

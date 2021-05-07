@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tictactoe.Main;
 import tictactoe.gamecomponents.Game;
+import tictactoe.utils.GameMode;
 import tictactoe.utils.GameStatus;
 
 import java.io.IOException;
@@ -51,10 +52,18 @@ public class ResultController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (Game.getGameStatus() == GameStatus.PLAYER1_WINS) {
-            winnerPlayerNameLabel.setText("Player 1");
+            if (Game.getGameMode() == GameMode.SOLO) {
+                winnerPlayerNameLabel.setText("Player");
+            } else {
+                winnerPlayerNameLabel.setText("Player 1");
+            }
             winnerPlayerSymbolImage.setImage(Main.CROSS);
         } else if (Game.getGameStatus() == GameStatus.PLAYER2_WINS) {
-            winnerPlayerNameLabel.setText("Player 2");
+            if (Game.getGameMode() == GameMode.SOLO) {
+                winnerPlayerNameLabel.setText("Computer");
+            } else {
+                winnerPlayerNameLabel.setText("Player 2");
+            }
             winnerPlayerSymbolImage.setImage(Main.CIRCLE);
         } else if (Game.getGameStatus() == GameStatus.DRAW) {
             winnerPlayerNameLabel.setText("");
@@ -64,5 +73,4 @@ public class ResultController implements Initializable {
             wonDrawLabel.setTextFill(Color.SLATEGRAY);
         }
     }
-
 }

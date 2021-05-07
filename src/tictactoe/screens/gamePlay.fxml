@@ -13,17 +13,17 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" styleClass="screen" stylesheets="@../stylesheets/main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.controllers.GamePlayController">
     <children>
-        <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="212.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="225.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/imageX.png" />
             </image>
         </ImageView>
-        <Label layoutX="281.0" layoutY="112.0" text="PLAYER 1">
+        <Label fx:id="playerXLabel" layoutX="281.0" layoutY="112.0" text="PLAYER 1">
             <font>
                 <Font name="Calibri" size="25.0" />
             </font>
         </Label>
-        <Label layoutX="118.0" layoutY="558.0" text="PLAYER 2">
+        <Label fx:id="playerOLabel" layoutX="118.0" layoutY="558.0" text="PLAYER 2">
             <font>
                 <Font name="Calibri" size="25.0" />
             </font>
@@ -55,9 +55,9 @@
                 <ImageView fx:id="square01" fitHeight="93.0" fitWidth="93.0" onMouseClicked="#markSquare" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
                 <ImageView fx:id="square02" fitHeight="93.0" fitWidth="93.0" onMouseClicked="#markSquare" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
             </children>
-         <effect>
-            <DropShadow />
-         </effect>
+            <effect>
+                <DropShadow />
+            </effect>
         </GridPane>
         <Button fx:id="BackToHomeButton" layoutX="66.0" layoutY="33.0" mnemonicParsing="false" onAction="#switchToHome" prefHeight="26.0" prefWidth="106.0" styleClass="button-gradient" stylesheets="@../stylesheets/main.css" text="HOME" textFill="WHITE">
             <font>

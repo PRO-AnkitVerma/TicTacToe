@@ -31,13 +31,32 @@ public class Board {
     public void markSquare(Position position, Symbol symbol) {
         Square square = grid.get(position.getX()).get(position.getY());
         if (square.isEmpty()) {
-            //TODO: mark the square filled!
             square.setSquare(symbol);
             --numberOfEmptySquares;
             System.out.println(numberOfEmptySquares + " left!!!");
         }
     }
 
+    public Symbol[][] get2DSymbolMatrix() {
+        Symbol[][] symbols = new Symbol[TOTAL_ROWS][TOTAL_COLUMNS];
+        for (int i = 0; i < TOTAL_ROWS; i++) {
+            for (int j = 0; j < TOTAL_COLUMNS; j++) {
+                symbols[i][j] = this.grid.get(i).get(j).getSymbol();
+            }
+        }
+        return symbols;
+    }
+
+
+    public void print() {
+        Symbol[][] symbols = get2DSymbolMatrix();
+        for (int i = 0; i < TOTAL_ROWS; i++) {
+            for (int j = 0; j < TOTAL_COLUMNS; j++) {
+                System.out.print(symbols[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 
     public ArrayList<ArrayList<Square>> getGrid() {
         return grid;
