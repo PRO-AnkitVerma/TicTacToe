@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import tictactoe.gamecomponents.Game;
 import tictactoe.gamecomponents.Player;
 import tictactoe.gamecomponents.Square;
+import tictactoe.utils.GameStatus;
 import tictactoe.utils.PlayerType;
 import tictactoe.utils.Position;
 import tictactoe.utils.Symbol;
@@ -77,6 +78,11 @@ public class GamePlayController implements Initializable {
         System.out.println("Clicked: " + x + " " + y + " :" + Game.getCurrentPlayer().getSymbol());
         System.out.println(Game.getCurrentPlayer().getPlayerType());
 
+        //TODO: evaluate who won?
+        Position position = new Position(square.getX(), square.getY());
+        GameStatus gameStatus = Game.isGameFinished(position);
+        navigateResultsIfGameFinished(gameStatus);
+
         currentPlayer = Game.switchCurrentPlayer();
 
         if (Game.getPlayer2().getPlayerType() == PlayerType.BOT) {
@@ -89,6 +95,13 @@ public class GamePlayController implements Initializable {
             squareId = "square" + square.getX() + square.getY();
             ImageView imageView = (ImageView) grid.lookup("#" + squareId);
             imageView.setImage(square.getImage());
+
+            //TODO: evaluate who won?
+            position = new Position(square.getX(), square.getY());
+            gameStatus = Game.isGameFinished(position);
+            navigateResultsIfGameFinished(gameStatus);
+
+
             currentPlayer = Game.switchCurrentPlayer();
         }
     }
@@ -106,6 +119,22 @@ public class GamePlayController implements Initializable {
             ImageView imageView = (ImageView) grid.lookup("#" + squareId);
             imageView.setImage(square.getImage());
             currentPlayer = Game.switchCurrentPlayer();
+        }
+    }
+
+    public void navigateResultsIfGameFinished(GameStatus gameStatus) {
+        if (gameStatus == GameStatus.PLAYER1_WINS) {
+            //TODO: Navigate to next page
+            //TODO: show result
+            System.out.println(GameStatus.PLAYER1_WINS);
+        } else if (gameStatus == GameStatus.PLAYER2_WINS) {
+            //TODO: Navigate to next page
+            //TODO: show result
+            System.out.println(GameStatus.PLAYER2_WINS);
+        } else if (gameStatus == GameStatus.DRAW) {
+            //TODO: Navigate to next page
+            //TODO: show result
+            System.out.println(GameStatus.DRAW);
         }
     }
 }

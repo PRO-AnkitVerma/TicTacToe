@@ -43,7 +43,15 @@ public class Square {
     }
 
     public boolean isEmpty() {
-        return symbol == Symbol.EMPTY;
+        return (symbol == Symbol.EMPTY);
+    }
+
+    public boolean isCircle() {
+        return (symbol == Symbol.CIRCLE);
+    }
+
+    public boolean isCross() {
+        return (symbol == Symbol.CROSS);
     }
 
     public Position getPosition() {
