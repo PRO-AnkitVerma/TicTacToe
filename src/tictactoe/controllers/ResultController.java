@@ -31,9 +31,8 @@ public class ResultController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        //TODO: How to use?? Game.getGameStatus() or currentPlayer
-
     }
+
+    //TODO: How to use?? Game.getGameStatus() or currentPlayer
 
 }
