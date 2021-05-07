@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -15,10 +16,7 @@ import javafx.stage.Stage;
 import tictactoe.gamecomponents.Game;
 import tictactoe.gamecomponents.Player;
 import tictactoe.gamecomponents.Square;
-import tictactoe.utils.GameStatus;
-import tictactoe.utils.MiniMax;
-import tictactoe.utils.PlayerType;
-import tictactoe.utils.Position;
+import tictactoe.utils.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,23 +26,13 @@ public class GamePlayController implements Initializable {
 
     @FXML
     public GridPane grid;
+    public Label playerXLabel;
+    public Label playerOLabel;
     private Player currentPlayer;
-
-    public ImageView square02;
-    public ImageView square01;
-    public ImageView square00;
-    public ImageView square12;
-    public ImageView square11;
-    public ImageView square10;
-    public ImageView square22;
-    public ImageView square21;
-    public ImageView square20;
     public Button BackToHomeButton;
     private Parent root;
     private Stage stage;
     private Scene scene;
-
-    private ImageView imageViewClicked;
     private String squareId;
 
     public void switchToHome(ActionEvent event) throws IOException {
@@ -55,10 +43,10 @@ public class GamePlayController implements Initializable {
         stage.show();
     }
 
-    public void markSquare(MouseEvent event) throws IOException, InterruptedException {
+    public void markSquare(MouseEvent event) throws IOException {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        imageViewClicked = (ImageView) event.getSource();
+        ImageView imageViewClicked = (ImageView) event.getSource();
         squareId = imageViewClicked.getId();
         String coords = squareId.substring(squareId.length() - 2);
         int x = Integer.parseInt(String.valueOf(coords.charAt(0)));
@@ -73,8 +61,6 @@ public class GamePlayController implements Initializable {
         Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
         imageViewClicked.setImage(square.getImage());
 
-        //System.out.println("Clicked: " + x + " " + y + " :" + Game.getCurrentPlayer().getSymbol());
-        //System.out.println(Game.getCurrentPlayer().getPlayerType());
 
         Position position = new Position(square.getX(), square.getY());
         GameStatus gameStatus = Game.isGameFinished(position);
@@ -92,16 +78,12 @@ public class GamePlayController implements Initializable {
             //TODO: add a smooth delay for bot move
 
             System.out.println(currentPlayer.getPlayerType());
-            //TODO: bot makes a move - backtracking
 
 
             int[] pos = MiniMax.getBestMove(Game.getBoard(), Game.getCurrentPlayer());
             square = Game.getBoard().getGrid().get(pos[0]).get(pos[1]);
 
-
-//            square = Player.getADumbMove(Game.getBoard());
             if (square == null) return;
-//            square.setSquare(currentPlayer.getSymbol());
             Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
 
             squareId = "square" + square.getX() + square.getY();
@@ -124,14 +106,22 @@ public class GamePlayController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (Game.getGameMode() == GameMode.SOLO) {
+            if (Game.getPlayer2().getSymbol() == Symbol.CROSS) {
+                playerXLabel.setText("Computer");
+                playerOLabel.setText("Player");
+            } else {
+                playerOLabel.setText("Computer");
+                playerXLabel.setText("Player");
+            }
+        }
+
         currentPlayer = Game.getCurrentPlayer();
         if (currentPlayer.getPlayerType() == PlayerType.BOT) {
 
-            //TODO: bot makes a move - backtracking
             int[] pos = MiniMax.getBestMove(Game.getBoard(), Game.getCurrentPlayer());
             Square square = Game.getBoard().getGrid().get(pos[0]).get(pos[1]);
 
-//            Square square = Player.getADumbMove(Game.getBoard());
             if (square == null) return;
 
             Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
