@@ -65,8 +65,9 @@ public class Game {
                 gameStatus = GameStatus.PLAYER2_WINS;
                 return GameStatus.PLAYER2_WINS;
             }
-        } else if (false/*TODO: condition to check if no square remaining*/) {
+        } else if (Game.getBoard().isFull()) {
             gameStatus = GameStatus.DRAW;
+            System.out.println("DRAW!!!");
             return GameStatus.DRAW;
         }
         gameStatus = GameStatus.PLAYING;

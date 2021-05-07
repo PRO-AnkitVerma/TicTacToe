@@ -34,6 +34,7 @@ public class Board {
             //TODO: mark the square filled!
             square.setSquare(symbol);
             --numberOfEmptySquares;
+            System.out.println(numberOfEmptySquares + " left!!!");
         }
     }
 
