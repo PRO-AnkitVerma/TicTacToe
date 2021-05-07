@@ -69,7 +69,7 @@ public class GamePlayController implements Initializable {
         }
 
         currentPlayer = Game.getCurrentPlayer();
-        square.setSquare(currentPlayer.getSymbol());
+        Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
         imageViewClicked.setImage(square.getImage());
 
 
@@ -94,7 +94,6 @@ public class GamePlayController implements Initializable {
             ImageView imageView = (ImageView) grid.lookup("#" + squareId);
             imageView.setImage(square.getImage());
 
-            //TODO: evaluate who won?
             position = new Position(square.getX(), square.getY());
             gameStatus = Game.isGameFinished(position);
             if (gameStatus != GameStatus.PLAYING) navigateResults(gameStatus);
@@ -111,10 +110,13 @@ public class GamePlayController implements Initializable {
             //TODO: bot makes a move - backtracking
             Square square = Player.getADumbMove(Game.getBoard());
             if (square == null) return;
-            square.setSquare(currentPlayer.getSymbol());
+
+            Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
+
             squareId = "square" + square.getX() + square.getY();
             ImageView imageView = (ImageView) grid.lookup("#" + squareId);
             imageView.setImage(square.getImage());
+
             currentPlayer = Game.switchCurrentPlayer();
         }
     }
