@@ -74,6 +74,12 @@ public class Game {
         return GameStatus.PLAYING;
     }
 
+    public static void playAgain() {
+        board = new Board();
+        gameStatus = GameStatus.PLAYING;
+        currentPlayer = (currentPlayer.getSymbol() == Symbol.CROSS) ? currentPlayer : switchCurrentPlayer();
+    }
+
     public static Player getPlayer1() {
         return player1;
     }
