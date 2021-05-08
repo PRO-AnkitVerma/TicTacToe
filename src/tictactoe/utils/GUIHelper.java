@@ -10,8 +10,10 @@ import java.io.IOException;
 
 public class GUIHelper {
     private static Stage stage;
+    private static final String screensPath = "../screens/";
 
-    public static void switchScene(String scenePath) throws IOException {
+    public static void switchScene(String sceneFXMLFileName) throws IOException {
+        String scenePath = screensPath + sceneFXMLFileName;
         Parent root = FXMLLoader.load(GUIHelper.class.getResource(scenePath));
         Scene scene = new Scene(root);
         stage.setScene(scene);

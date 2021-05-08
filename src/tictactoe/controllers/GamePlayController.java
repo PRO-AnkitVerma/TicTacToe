@@ -28,7 +28,7 @@ public class GamePlayController implements Initializable {
     private String squareId;
 
     public void switchToHome(ActionEvent event) throws IOException {
-        GUIHelper.switchScene("../screens/home.fxml");
+        GUIHelper.switchScene("home.fxml");
     }
 
     public void markSquare(MouseEvent event) throws IOException {
@@ -111,6 +111,6 @@ public class GamePlayController implements Initializable {
 
 
     public void switchToResults(MouseEvent event) throws IOException {
-        GUIHelper.switchScene("../screens/result.fxml");
+        GUIHelper.switchScene("result.fxml");
     }
 }

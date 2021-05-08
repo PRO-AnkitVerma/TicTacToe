@@ -23,7 +23,7 @@ public class PickSideController {
         }
 
         if (firstRadioButton.isSelected() || secondRadioButton.isSelected()) {
-            GUIHelper.switchScene("../screens/gamePlay.fxml");
+            GUIHelper.switchScene("gamePlay.fxml");
         }
     }
 }

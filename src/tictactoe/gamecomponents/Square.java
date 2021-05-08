@@ -1,7 +1,7 @@
 package tictactoe.gamecomponents;
 
 import javafx.scene.image.Image;
-import tictactoe.Main;
+import tictactoe.utils.ImageHelper;
 import tictactoe.utils.Position;
 import tictactoe.utils.Symbol;
 
@@ -20,9 +20,9 @@ public class Square {
     public void setSquare(Symbol symbol) {
         this.symbol = symbol;
         if (symbol == Symbol.CIRCLE) {
-            this.image = Main.SMALL_CIRCLE;
+            this.image = ImageHelper.SMALL_CIRCLE;
         } else if (symbol == Symbol.CROSS) {
-            this.image = Main.SMALL_CROSS;
+            this.image = ImageHelper.SMALL_CROSS;
         }
     }
 

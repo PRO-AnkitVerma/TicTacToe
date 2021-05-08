@@ -8,17 +8,12 @@ import tictactoe.utils.GUIHelper;
 
 public class Main extends Application {
 
-    public static final Image CIRCLE = new Image("tictactoe/images/imageO.png");
-    public static final Image CROSS = new Image("tictactoe/images/imageX.png");
-
-    public static final Image SMALL_CIRCLE = new Image("tictactoe/images/imageO-small.png");
-    public static final Image SMALL_CROSS = new Image("tictactoe/images/imageX-small.png");
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         GUIHelper.setupStage(primaryStage, "TicTacToe", "tictactoe/images/logo.png");
-        GUIHelper.switchScene("../screens/home.fxml");
+        GUIHelper.switchScene("home.fxml");
+        //TODO: change switchscene method to take scene fxml file name as input!
     }
 
 

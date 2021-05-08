@@ -11,12 +11,12 @@ public class HomeController {
 
     public void switchToPickSide(ActionEvent event) throws IOException {
         Game.setGame(GameMode.SOLO);
-        GUIHelper.switchScene("../screens/pickSide.fxml");
+        GUIHelper.switchScene("pickSide.fxml");
     }
 
     public void switchToGamePlay(ActionEvent event) throws IOException {
         Game.setGame(GameMode.MULTIPLAYER);
-        GUIHelper.switchScene("../screens/gamePlay.fxml");
+        GUIHelper.switchScene("gamePlay.fxml");
     }
 }
 
