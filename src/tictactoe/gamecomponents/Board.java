@@ -57,6 +57,10 @@ public class Board {
         }
     }
 
+    public Square getSquare(Position position) {
+        return grid.get(position.getX()).get(position.getY());
+    }
+
     public ArrayList<ArrayList<Square>> getGrid() {
         return grid;
     }

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import tictactoe.gamecomponents.Game;
@@ -36,25 +37,28 @@ public class ResultController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (Game.getGameStatus() == GameStatus.PLAYER1_WINS) {
-            if (Game.getGameMode() == GameMode.SOLO) {
-                winnerPlayerNameLabel.setText("Player");
-            } else {
-                winnerPlayerNameLabel.setText("Player 1");
-            }
-            winnerPlayerSymbolImage.setImage(ImageHelper.CROSS);
+            setPlayerWinState("Player", "Player 1", ImageHelper.CROSS);
         } else if (Game.getGameStatus() == GameStatus.PLAYER2_WINS) {
-            if (Game.getGameMode() == GameMode.SOLO) {
-                winnerPlayerNameLabel.setText("Computer");
-            } else {
-                winnerPlayerNameLabel.setText("Player 2");
-            }
-            winnerPlayerSymbolImage.setImage(ImageHelper.CIRCLE);
+            setPlayerWinState("Computer", "Player 2", ImageHelper.CIRCLE);
         } else if (Game.getGameStatus() == GameStatus.DRAW) {
-            winnerPlayerNameLabel.setText("");
-            winnerPlayerSymbolImage.setVisible(false);
-            wonDrawLabel.setText("DRAW!");
-            wonDrawLabel.setTranslateY(-70);
-            wonDrawLabel.setTextFill(Color.SLATEGRAY);
+            setDrawScreenState();
         }
+    }
+
+    private void setPlayerWinState(String soloWinnerName, String multiplayerWinnerName, Image winnerImage) {
+        if (Game.getGameMode() == GameMode.SOLO) {
+            winnerPlayerNameLabel.setText(soloWinnerName);
+        } else {
+            winnerPlayerNameLabel.setText(multiplayerWinnerName);
+        }
+        winnerPlayerSymbolImage.setImage(winnerImage);
+    }
+
+    private void setDrawScreenState() {
+        winnerPlayerNameLabel.setText("");
+        winnerPlayerSymbolImage.setVisible(false);
+        wonDrawLabel.setText("DRAW!");
+        wonDrawLabel.setTranslateY(-70);
+        wonDrawLabel.setTextFill(Color.SLATEGRAY);
     }
 }

@@ -64,8 +64,6 @@ public class MiniMax {
         Position bestMove = new Position(-1, -1);
         int bestValue = Integer.MIN_VALUE;
         Symbol playerSymbol = player.getSymbol();
-        Symbol opponentSymbol = getOpponentSymbol(playerSymbol);
-
 
         for (int row = 0; row < Board.TOTAL_ROWS; row++) {
             for (int col = 0; col < Board.TOTAL_COLUMNS; col++) {
