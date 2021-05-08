@@ -2,17 +2,12 @@ package tictactoe.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import tictactoe.gamecomponents.Game;
 import tictactoe.gamecomponents.Player;
 import tictactoe.gamecomponents.Square;
@@ -30,21 +25,13 @@ public class GamePlayController implements Initializable {
     public Label playerOLabel;
     private Player currentPlayer;
     public Button BackToHomeButton;
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
     private String squareId;
 
     public void switchToHome(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../screens/home.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        GUIHelper.switchScene("../screens/home.fxml");
     }
 
     public void markSquare(MouseEvent event) throws IOException {
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         ImageView imageViewClicked = (ImageView) event.getSource();
         squareId = imageViewClicked.getId();
@@ -58,35 +45,33 @@ public class GamePlayController implements Initializable {
         }
 
         currentPlayer = Game.getCurrentPlayer();
-        Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
+        Game.getBoard().markSquare(square.getPosition(), currentPlayer.getSymbol());
         imageViewClicked.setImage(square.getImage());
 
 
-        Position position = new Position(square.getX(), square.getY());
-        GameStatus gameStatus = Game.isGameFinished(position);
+        GameStatus gameStatus = Game.isGameFinished(square.getPosition());
         if (gameStatus != GameStatus.PLAYING) {
-            navigateResults(stage);
+            switchToResults(event);
             return;
         }
 
         currentPlayer = Game.switchCurrentPlayer();
 
         if (Game.getPlayer2().getPlayerType() == PlayerType.BOT) {
-            
-            int[] pos = MiniMax.getBestMove(Game.getBoard(), Game.getCurrentPlayer());
-            square = Game.getBoard().getGrid().get(pos[0]).get(pos[1]);
+
+            Position position = MiniMax.getBestMove(Game.getBoard(), Game.getCurrentPlayer());
+            square = Game.getBoard().getGrid().get(position.getX()).get(position.getY());
 
             if (square == null) return;
-            Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
+            Game.getBoard().markSquare(square.getPosition(), currentPlayer.getSymbol());
 
             squareId = "square" + square.getX() + square.getY();
             ImageView imageView = (ImageView) grid.lookup("#" + squareId);
             imageView.setImage(square.getImage());
 
-            position = new Position(square.getX(), square.getY());
-            gameStatus = Game.isGameFinished(position);
+            gameStatus = Game.isGameFinished(square.getPosition());
             if (gameStatus != GameStatus.PLAYING) {
-                navigateResults(stage);
+                switchToResults(event);
                 return;
             }
 
@@ -109,12 +94,12 @@ public class GamePlayController implements Initializable {
         currentPlayer = Game.getCurrentPlayer();
         if (currentPlayer.getPlayerType() == PlayerType.BOT) {
 
-            int[] pos = MiniMax.getBestMove(Game.getBoard(), Game.getCurrentPlayer());
-            Square square = Game.getBoard().getGrid().get(pos[0]).get(pos[1]);
+            Position position = MiniMax.getBestMove(Game.getBoard(), Game.getCurrentPlayer());
+            Square square = Game.getBoard().getGrid().get(position.getX()).get(position.getY());
 
             if (square == null) return;
 
-            Game.getBoard().markSquare(new Position(square.getX(), square.getY()), currentPlayer.getSymbol());
+            Game.getBoard().markSquare(square.getPosition(), currentPlayer.getSymbol());
 
             squareId = "square" + square.getX() + square.getY();
             ImageView imageView = (ImageView) grid.lookup("#" + squareId);
@@ -125,10 +110,7 @@ public class GamePlayController implements Initializable {
     }
 
 
-    public void navigateResults(Stage stage) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../screens/result.fxml"));
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void switchToResults(MouseEvent event) throws IOException {
+        GUIHelper.switchScene("../screens/result.fxml");
     }
 }

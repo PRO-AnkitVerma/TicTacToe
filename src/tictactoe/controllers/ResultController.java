@@ -1,18 +1,14 @@
 package tictactoe.controllers;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import tictactoe.Main;
 import tictactoe.gamecomponents.Game;
+import tictactoe.utils.GUIHelper;
 import tictactoe.utils.GameMode;
 import tictactoe.utils.GameStatus;
 
@@ -27,26 +23,14 @@ public class ResultController implements Initializable {
     public ImageView winnerPlayerSymbolImage;
     public Button playAgainButton;
     public Button backToHomeButton;
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
 
     public void switchToGamePlay(ActionEvent event) throws IOException {
         Game.playAgain();
-
-        root = FXMLLoader.load(getClass().getResource("../screens/gamePlay.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        GUIHelper.switchScene("../screens/gamePlay.fxml");
     }
 
     public void switchToHome(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../screens/home.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        GUIHelper.switchScene("../screens/home.fxml");
     }
 
     @Override

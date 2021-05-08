@@ -35,4 +35,16 @@ public enum Symbol {
         }
         return 0;
     }
+
+    public boolean isEmpty() {
+        return (this == Symbol.EMPTY);
+    }
+
+    public boolean isCircle() {
+        return (this == Symbol.CIRCLE);
+    }
+
+    public boolean isCross() {
+        return (this == Symbol.CROSS);
+    }
 }
