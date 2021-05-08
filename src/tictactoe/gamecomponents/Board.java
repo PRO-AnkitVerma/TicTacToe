@@ -13,9 +13,9 @@ public class Board {
     private final ArrayList<ArrayList<Square>> grid;
 
     public Board() {
-        grid = new ArrayList<ArrayList<Square>>();
+        grid = new ArrayList<>();
         for (int i = 0; i < TOTAL_ROWS; i++) {
-            ArrayList<Square> row = new ArrayList<Square>();
+            ArrayList<Square> row = new ArrayList<>();
             for (int j = 0; j < TOTAL_COLUMNS; j++) {
                 row.add(new Square(i, j));
             }
@@ -33,7 +33,6 @@ public class Board {
         if (square.isEmpty()) {
             square.setSquare(symbol);
             --numberOfEmptySquares;
-            System.out.println(numberOfEmptySquares + " left!!!");
         }
     }
 
@@ -56,6 +55,10 @@ public class Board {
             }
             System.out.println();
         }
+    }
+
+    public Square getSquare(Position position) {
+        return grid.get(position.getX()).get(position.getY());
     }
 
     public ArrayList<ArrayList<Square>> getGrid() {

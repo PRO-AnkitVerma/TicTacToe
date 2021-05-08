@@ -1,32 +1,17 @@
 package tictactoe;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import tictactoe.utils.GUIHelper;
 
 
 public class Main extends Application {
 
-    public static final Image CIRCLE = new Image("tictactoe/images/imageO.png");
-    public static final Image CROSS = new Image("tictactoe/images/imageX.png");
-
-    public static final Image SMALLCIRCLE = new Image("tictactoe/images/imageO-small.png");
-    public static final Image SMALLCROSS = new Image("tictactoe/images/imageX-small.png");
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("screens/home.fxml"));
-        primaryStage.setTitle("TicTacToe");
-        Scene scene = new Scene(root);
-
-        Image icon = new Image("tictactoe/images/logo.png");
-        primaryStage.getIcons().add(icon);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        GUIHelper.setupStage(primaryStage, "TicTacToe", "tictactoe/images/logo.png");
+        GUIHelper.switchScene("home.fxml");
     }
 
 

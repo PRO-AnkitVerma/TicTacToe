@@ -16,10 +16,14 @@ public class Game {
         gameMode = gM;
         board = new Board();
         player1 = new Player();
-        player2 = (gameMode == GameMode.SOLO) ? new Player(PlayerType.BOT) : new Player();
+        player2 = getNewPlayer2();
         player1.setSymbol(Symbol.CROSS);
         player2.setSymbol(Symbol.CIRCLE);
         currentPlayer = player1;
+    }
+
+    private static Player getNewPlayer2() {
+        return (gameMode == GameMode.SOLO) ? new Player(PlayerType.BOT) : new Player();
     }
 
     public static Player switchCurrentPlayer() {
@@ -33,7 +37,7 @@ public class Game {
 
     public static void setPlayerSymbol(Symbol symbol) {
         player1.setSymbol(symbol);
-        if (symbol == Symbol.CIRCLE) {
+        if (symbol.isCircle()) {
             player2.setSymbol(Symbol.CROSS);
             currentPlayer = player2;
         } else {
@@ -58,7 +62,7 @@ public class Game {
                 revDiag++;
         }
         if (row == n + 1 || col == n + 1 || diag == n + 1 || revDiag == n + 1) {
-            if (currentPlayer.getSymbol() == Symbol.CROSS) {
+            if (currentPlayer.getSymbol().isCross()) {
                 gameStatus = GameStatus.PLAYER1_WINS;
                 return GameStatus.PLAYER1_WINS;
             } else {
@@ -67,7 +71,6 @@ public class Game {
             }
         } else if (Game.getBoard().isFull()) {
             gameStatus = GameStatus.DRAW;
-            System.out.println("DRAW!!!");
             return GameStatus.DRAW;
         }
         gameStatus = GameStatus.PLAYING;
@@ -77,7 +80,7 @@ public class Game {
     public static void playAgain() {
         board = new Board();
         gameStatus = GameStatus.PLAYING;
-        currentPlayer = (currentPlayer.getSymbol() == Symbol.CROSS) ? currentPlayer : switchCurrentPlayer();
+        currentPlayer = (currentPlayer.getSymbol().isCross()) ? currentPlayer : switchCurrentPlayer();
     }
 
     public static Player getPlayer1() {
