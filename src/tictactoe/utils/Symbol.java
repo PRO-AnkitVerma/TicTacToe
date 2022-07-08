@@ -23,13 +23,13 @@ public enum Symbol {
 
     public static int getValue(Symbol symbol) {
         switch (symbol) {
-            case EMPTY -> {
+            case EMPTY : {
                 return 0;
             }
-            case CIRCLE -> {
+            case CIRCLE : {
                 return -10;
             }
-            case CROSS -> {
+            case CROSS : {
                 return +10;
             }
         }
